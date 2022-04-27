@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "HyperMarkdown": {
+    "MarkdownEditor": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

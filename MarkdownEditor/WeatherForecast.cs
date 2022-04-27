@@ -1,4 +1,4 @@
-namespace HyperMarkdown
+namespace MarkdownEditor
 {
     public class WeatherForecast
     {

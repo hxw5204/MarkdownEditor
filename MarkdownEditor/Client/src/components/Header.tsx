@@ -1,4 +1,4 @@
-﻿import "../styles/style.scss";
+﻿import "../styles/headerStyle.scss";
 import React from 'react';
 import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { buttonList } from "../model/Model";

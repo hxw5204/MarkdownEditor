@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace HyperMarkdown.Controllers
+namespace MarkdownEditor.Controllers
 {
     [ApiController]
     [Route("[controller]")]

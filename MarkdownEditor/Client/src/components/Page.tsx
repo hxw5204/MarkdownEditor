@@ -1,5 +1,4 @@
-﻿import "../styles/style.scss";
-import React from 'react';
+﻿import React from 'react';
 import { SideBar } from "./Sidebar"
 import { Editor } from "./Editor"
 
