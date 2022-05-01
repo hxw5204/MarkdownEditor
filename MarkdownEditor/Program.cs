@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,7 +9,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSpaStaticFiles(configuration =>
 {
-    configuration.RootPath = "Client/build";
+    configuration.RootPath = "client/build";
 });
 
 var app = builder.Build();
@@ -20,31 +19,15 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseDeveloperExceptionPage();
-}
-else
-{
-    app.UseExceptionHandler();
-    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
-app.UseSpaStaticFiles();
-app.UseRouting();
 
 app.UseAuthorization();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller}/{action=Index}/{id?}");
-});
-
 app.UseSpa(spa =>
 {
-    spa.Options.SourcePath = "Client";
+    spa.Options.SourcePath = "client";
 
     if (app.Environment.IsDevelopment())
     {

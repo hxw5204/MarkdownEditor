@@ -1,15 +1,22 @@
 import React from 'react';
-import "./styles/style.scss";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Header } from "./components/Header";
-import { Page } from "./components/Page";
+import logo from './logo.svg';
+import './App.css';
+import Editor from "rich-markdown-editor";
 
 function App() {
   return (
-      <div className="_regionComposerRoot">
-          <Header />
-          <Page />
-      </div>
+    <div className='App'>
+    <Editor className='Editor'
+      defaultValue="
+      ![A caption](https://upload.wikimedia.org/wikipedia/commons/0/06/Davide-ragusa-gcDwzUGuUoI-unsplash.jpg)"
+      disableExtensions={[]}
+      onBlur={() => {}}
+      onCancel={function noRefCheck() {}}
+      onClickHashtag={function noRefCheck() {}}
+      onClickLink={function noRefCheck() {}}
+      onFocus={function noRefCheck() {}}
+    />
+    </div>
   );
 }
 
