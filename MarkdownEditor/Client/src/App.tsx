@@ -1,21 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Editor from "rich-markdown-editor";
+import { MarkdownEditor } from './Components/Editor/Editor';
+import { Header } from './Components/Header/Header';
 
 function App() {
   return (
-    <div className='App'>
-    <Editor className='Editor'
-      defaultValue="
-      ![A caption](https://upload.wikimedia.org/wikipedia/commons/0/06/Davide-ragusa-gcDwzUGuUoI-unsplash.jpg)"
-      disableExtensions={[]}
-      onBlur={() => {}}
-      onCancel={function noRefCheck() {}}
-      onClickHashtag={function noRefCheck() {}}
-      onClickLink={function noRefCheck() {}}
-      onFocus={function noRefCheck() {}}
-    />
+      <div className='App'>
+          <Header />
+          <MarkdownEditor />
     </div>
   );
 }
