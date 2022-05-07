@@ -1,7 +1,13 @@
+using MarkdownEditor.Models;
+using MarkdownEditor.Services;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.Configure<UserDatebaseSettings>(
+    builder.Configuration.GetSection("MarkdownEditorDatabase"));
+
+builder.Services.AddSingleton<MarkdownEditorService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

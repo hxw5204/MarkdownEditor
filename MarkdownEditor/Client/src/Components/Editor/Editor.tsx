@@ -1,33 +1,32 @@
 ﻿import React from 'react';
-import { useSelector, useDispatch } from 'react-redux'
 import Editor from 'rich-markdown-editor';
-import { dark } from 'rich-markdown-editor/dist/styles/theme';
-import { defaultValue } from '../../Data/MockData'
+import { useSelector, useDispatch } from 'react-redux';
 import './Editor.css';
+import { AppState, setContent } from '../../Store';
 
 
-
-interface TextEditorProps
+const MarkdownEditor = () =>
 {
-    readonly: boolean
-}
-
-
-export const MarkdownEditor = () =>
-{
+    const dispatch = useDispatch();
+    const content = useSelector((state: AppState) => state.editor.content);
+    
     const onContentChange = (value: string) =>
     {
-        console.log(value);
+        dispatch(setContent(value));
+        console.log(content);
     }
 
     return (
         <div style={{ justifyContent: 'center', display: 'flex' }}>
             <Editor className="Editor"
-                defaultValue={defaultValue}
+                defaultValue={content}
+                placeholder={"Write something nice…"}
                 headingsOffset={1}
-                onChange={(value) => {onContentChange(value());}}
-                />
+                onChange={(value) => { onContentChange(value()); }}
+            />
         </div>
     );
 }
+
+export default MarkdownEditor;
 

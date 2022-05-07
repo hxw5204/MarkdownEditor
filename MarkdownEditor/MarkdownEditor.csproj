@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="client\src\Utils\**" />
+    <Content Remove="client\src\Utils\**" />
+    <EmbeddedResource Remove="client\src\Utils\**" />
+    <None Remove="client\src\Utils\**" />
+    <TypeScriptCompile Remove="client\src\Utils\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="client\src\Components\Editor.tsx" />
   </ItemGroup>
 
@@ -19,10 +27,6 @@
     </PackageReference>
     <PackageReference Include="MongoDB.Driver" Version="2.15.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="client\src\Utils\" />
   </ItemGroup>
 
 </Project>
