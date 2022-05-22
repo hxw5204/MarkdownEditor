@@ -1,26 +1,48 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { CreateNoteDto } from './dto/create-note.dto';
 import { UpdateNoteDto } from './dto/update-note.dto';
+import { Note } from './entities/note.entity';
 
 @Injectable()
 export class NotesService {
+  private notes: Note[] = [];
+
+  constructor(
+    @InjectModel(Note.name) private readonly noteModel: Model<Note>,
+  ) {}
+
   create(createNoteDto: CreateNoteDto) {
-    return 'This action adds a new note';
+    const note = new this.noteModel(createNoteDto);
+    return note.save();
   }
 
   findAll() {
-    return `This action returns all notes`;
+    return this.noteModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} note`;
+  async findOne(id: string) {
+    const note = this.noteModel.findOne({ _id: id }).exec();
+    if (!note) {
+      throw new NotFoundException(`Note #${id} not found`);
+    }
+    return note;
   }
 
-  update(id: number, updateNoteDto: UpdateNoteDto) {
-    return `This action updates a #${id} note`;
+  async update(id: string, updateNoteDto: UpdateNoteDto) {
+    const existingNote = await this.noteModel
+      .findOneAndUpdate({ _id: id }, { $set: updateNoteDto }, { new: true })
+      .exec();
+
+    if (!existingNote) {
+      throw new NotFoundException(`Note #${id} not found`);
+    }
+    return existingNote;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} note`;
+  async remove(id: string) {
+    const existingNote = await this.findOne(id);
+    return existingNote.remove();
   }
 }
